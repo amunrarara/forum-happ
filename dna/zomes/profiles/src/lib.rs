@@ -48,10 +48,6 @@ fn get_my_profile(_: ()) -> ExternResult<Option<Profile>> {
         Some(p) => Ok(Some(p)),
         _ => Ok(None)
     }
-
-    // Ok(Some(Profile {
-    //     nickname: "Alice".to_string(),
-    // }))
 }
 
 #[hdk_extern]
