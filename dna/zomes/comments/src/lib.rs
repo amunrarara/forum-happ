@@ -31,22 +31,22 @@ enum LinkTypes {
 #[hdk_extern]
 fn create_comment(input: CreateCommentInput) -> ExternResult<ActionHash> {
     let comment = Comment {comment: input.comment};
-    let ac_hash = create_entry(EntryTypes::Comment(comment))?;
+    let action_hash = create_entry(EntryTypes::Comment(comment))?;
 
     create_link(
         input.comment_on,
-        ac_hash.clone(),
+        action_hash.clone(),
         LinkTypes::CommentOnToComment,
         ()
     )?;
 
-    Ok(ac_hash)
+    Ok(action_hash)
 }
 
 #[hdk_extern]
-fn get_comments_on(ac_hash: ActionHash) -> ExternResult<Vec<Record>> {
+fn get_comments_on(action_hash: ActionHash) -> ExternResult<Vec<Record>> {
     let links = get_links(
-        ac_hash,
+        action_hash,
         LinkTypes::CommentOnToComment,
         None,
       )?;
@@ -61,4 +61,10 @@ fn get_comments_on(ac_hash: ActionHash) -> ExternResult<Vec<Record>> {
       }
 
     Ok(comments)
+}
+
+#[hdk_extern]
+fn delete_comment(action_hash: ActionHash) -> ExternResult<ActionHash> {
+    let delete_action_hash = delete_entry(action_hash)?;
+    Ok(delete_action_hash)
 }
