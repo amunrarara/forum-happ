@@ -32,7 +32,7 @@ WARNING! If at any point in time, you see a long error message that ends like th
   = note: rust-lld: error: duplicate symbol: __num_link_types
           >>> defined in /home/guillem/projects/holochain/immersive/forum-happ/target/wasm32-unknown-unknown/release/deps/profiles.profiles.5a73b8e7-cgu.6.rcgu.o
           >>> defined in /home/guillem/projects/holochain/immersive/forum-happ/target/wasm32-unknown-unknown/release/deps/libprofiles_zome-d5e1996845075c54.rlib(profiles_zome-d5e1996845075c54.profiles_zome.2103d8eb-cgu.1.rcgu.o)
-          
+
 
 error: could not compile `profiles` due to previous error
 ```
@@ -89,7 +89,7 @@ Solve the next steps in the `comments` zome, in `dna/zomes/comments/lib.rs`.
   - `comment`, of type String, the actual comment.
 
 3. Define the link types enum for the zome with only one variant `CommentedOnToComment`.
-   
+
 - In the `create_comment` function, after the comment is created, create a link from the `comment_on` hash to the `comment` hash.
 
 *Note: there is not any tests for this step, so if you run `EXERCISE=2 STEP=3 npm test` won't result in an error.
@@ -123,10 +123,10 @@ Solve the next steps in the `posts` zome, in `dna/zomes/posts/lib.rs`.
 4. Create the given channel:
 
 - Define the link types enum with only one variant: `PathToChannel`.
-- After the post gets created, build a path of the form `all_posts.<CHANNEL_NAME>`. 
+- After the post gets created, build a path of the form `all_posts.<CHANNEL_NAME>`.
   - Eg. if the given channel is `nature`, the path should be `all_posts.nature`.
 - Add the `PathToChannel` link type to the path to turn it into a `TypedPath`-
-- Call `.ensure()` with the typed path so that a path gets created for the given channel name. The path has to be of the form . 
+- Call `.ensure()` with the typed path so that a path gets created for the given channel name. The path has to be of the form .
 
 5. Change the function `create_post` so that after the channel path gets created, it also creates a link from the entry hash of that channel path to the action hash of the created post.
 
